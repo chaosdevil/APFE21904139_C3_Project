@@ -17,16 +17,6 @@ class RestaurantTest {
 
     //REFACTOR ALL THE REPEATED LINES OF CODE
 
-    // @BeforeEach
-    // public void initEach() {
-    //     LocalTime openingTime = LocalTime.parse("10:30:00");
-    //     LocalTime closingTime = LocalTime.parse("22:00:00");
-    //     restaurant = new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-    //     restaurant.addToMenu("Sweet corn soup",119);
-    //     restaurant.addToMenu("Vegetable lasagne", 269);
-    // }
-
-
     @BeforeEach
     public void initSpy() {
         LocalTime openingTime = LocalTime.parse("10:30:00");
@@ -77,7 +67,7 @@ class RestaurantTest {
 
         int initialMenuSize = restaurant.getMenu().size();
         restaurant.addToMenu("Sizzling brownie",319);
-        assertEquals(initialMenuSize+1,restaurant.getMenu().size());
+        assertEquals(initialMenuSize+1, restaurant.getMenu().size());
     }
 
     @Test
@@ -85,14 +75,14 @@ class RestaurantTest {
 
         int initialMenuSize = restaurant.getMenu().size();
         restaurant.removeFromMenu("Vegetable lasagne");
-        assertEquals(initialMenuSize-1,restaurant.getMenu().size());
+        assertEquals(initialMenuSize-1, restaurant.getMenu().size());
+
     }
 
     @Test
     public void removing_item_that_does_not_exist_should_throw_exception() {
         
-        assertThrows(itemNotFoundException.class,
-                ()->restaurant.removeFromMenu("French fries"));
+        assertThrows(itemNotFoundException.class, () -> restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }

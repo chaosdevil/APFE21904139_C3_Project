@@ -38,13 +38,13 @@ public class Restaurant {
         return totalPrice;
     }
 
-    public int getTotalCostOrder(List<String> itemNames) {
+    public int getTotalCostOrder(String... itemNames) {
 
         int totalCost = 0;
 
-        for (int i = 0; i < itemNames.size(); i++) {
+        for (String name : itemNames) {
             for (int j = 0; j < menu.size(); j++) {
-                if (itemNames.get(i).compareTo(menu.get(j).getName()) == 0) {
+                if (name.compareTo(menu.get(j).getName()) == 0) {
                     totalCost += menu.get(j).getPrice();
                 }
             }
