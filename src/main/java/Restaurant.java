@@ -28,6 +28,34 @@ public class Restaurant {
         return menu;
     }
 
+    // get total price
+    public int getTotalPrice() {
+        List<Item> menus = getMenu();
+        int totalPrice = 0;
+        for (int i = 0; i < menus.size(); i++) {
+            totalPrice += menus.get(i).getPrice();
+        }
+        return totalPrice;
+    }
+
+    public String
+
+    public int getTotalCostOrder(List<String> itemNames) {
+
+        int totalCost = 0;
+
+        for (int i = 0; i < itemNames.size(); i++) {
+            for (int j = 0; j < menu.size(); j++) {
+                if (itemNames.get(i).compareTo(menu.get(j).getName()) == 0) {
+                    totalCost += menu.get(j).getPrice();
+                }
+            }
+        }
+
+        return totalCost;
+
+    }
+
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))
@@ -60,6 +88,16 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getMenuNameList() {
+
+        List<String> menuList = new ArrayList<>();
+        for (int i = 0; i < menu.size(); i++) {
+            menuList.add(menu.get(i).getName());
+        }
+
+        return menuList;
     }
 
 }
