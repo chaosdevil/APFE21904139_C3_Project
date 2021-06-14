@@ -16,7 +16,7 @@ class RestaurantTest {
     Restaurant restaurant;
 
     //REFACTOR ALL THE REPEATED LINES OF CODE
-    
+
     // @BeforeEach
     // public void initEach() {
     //     LocalTime openingTime = LocalTime.parse("10:30:00");
@@ -28,7 +28,7 @@ class RestaurantTest {
 
 
     @BeforeEach
-    public void initEachSpy() {
+    public void initSpy() {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("18:00:00");
         restaurant = Mockito.spy(new Restaurant("Amelie's cafe", "Chennai", openingTime, closingTime));
