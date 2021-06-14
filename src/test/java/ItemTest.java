@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-public class ItemTest {
-=======
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
@@ -59,5 +56,4 @@ public class ItemTest {
 
         assertEquals(119+199, restaurant.getTotalCostOrder(itemNames));
     }
->>>>>>> 5610636f2bfb1720cd639ee089a93681177fec67
 }
