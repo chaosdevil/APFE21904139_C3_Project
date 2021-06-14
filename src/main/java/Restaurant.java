@@ -38,8 +38,6 @@ public class Restaurant {
         return totalPrice;
     }
 
-    public String
-
     public int getTotalCostOrder(List<String> itemNames) {
 
         int totalCost = 0;
