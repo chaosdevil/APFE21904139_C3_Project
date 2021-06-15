@@ -50,5 +50,8 @@ public class ItemTest {
         assertEquals(199+269, restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne"));
         assertEquals(199+269+50, restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Chinese noodles"));
 
+        String[] items = {"Shrimp salad", "Vegetable lasagne", "Chinese noodles"};
+        assertEquals(199+269+50, restaurant.getTotalCostOrder(items));
+
     }
 }

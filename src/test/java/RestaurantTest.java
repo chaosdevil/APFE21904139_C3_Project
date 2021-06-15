@@ -2,7 +2,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 
 import java.time.LocalTime;
 
@@ -35,6 +34,7 @@ class RestaurantTest {
         when(restaurant.getCurrentTime()).thenReturn(LocalTime.parse("13:00:00"));
 
         assertTrue(restaurant.isRestaurantOpen());
+
     }
 
     @Test
@@ -54,12 +54,14 @@ class RestaurantTest {
     public void getTotalPrice_should_return_correct_price() {
 
         assertEquals(119+269, restaurant.getTotalPrice());
+
     }
 
     @Test
     public void getMenu_should_be_not_null() {
 
         assertNotNull(restaurant.getMenu());
+
     }
 
     @Test
@@ -68,6 +70,7 @@ class RestaurantTest {
         int initialMenuSize = restaurant.getMenu().size();
         restaurant.addToMenu("Sizzling brownie",319);
         assertEquals(initialMenuSize+1, restaurant.getMenu().size());
+
     }
 
     @Test
@@ -83,6 +86,7 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         
         assertThrows(itemNotFoundException.class, () -> restaurant.removeFromMenu("French fries"));
+
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
