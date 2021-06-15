@@ -3,10 +3,10 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ItemTest {
@@ -43,7 +43,7 @@ public class ItemTest {
     }
 
     @Test
-    public void test_return_correct_totalPrice_with_selected_item_names() {
+    public void test_return_correct_totalPrice_with_selected_item_names() throws itemNotFoundException {
 
         assertEquals(119+199, restaurant.getTotalCostOrder("Sweet corn soup", "Shrimp salad"));
         assertEquals(119+50, restaurant.getTotalCostOrder("Sweet corn soup", "Chinese noodles"));
@@ -52,6 +52,13 @@ public class ItemTest {
 
         String[] items = {"Shrimp salad", "Vegetable lasagne", "Chinese noodles"};
         assertEquals(199+269+50, restaurant.getTotalCostOrder(items));
+
+    }
+
+    @Test
+    public void test_getTotalCostOrder_throws_itemNotFoundException() {
+
+        assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Thai noodles"));
 
     }
 }
