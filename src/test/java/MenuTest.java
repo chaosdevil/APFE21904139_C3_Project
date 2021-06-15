@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ItemTest {
+public class MenuTest {
 
     Restaurant restaurant;
     RestaurantService service;
@@ -59,6 +59,7 @@ public class ItemTest {
     public void test_getTotalCostOrder_throws_itemNotFoundException() {
 
         assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Thai noodles"));
+        assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Pizza", "Chinese noodles"));
 
     }
 }

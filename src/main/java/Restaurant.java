@@ -3,6 +3,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Restaurant {
     private String name;
@@ -39,6 +40,7 @@ public class Restaurant {
         return totalPrice;
     }
 
+    // sort the menuNames
     public void selectionSort(List<String> itemNames) {
         for (int i = 0; i < itemNames.size() - 1; i++) {
             for (int j = i+1; j < itemNames.size(); j++) {
@@ -51,6 +53,8 @@ public class Restaurant {
         }
     }
 
+    // search items in menu and return true if found, otherwise return
+    // implemented on binary search
     public boolean searchItemInMenu(List<String> menuNameList, String target) {
         int low = 0;
         int high = menuNameList.size() - 1;
@@ -66,42 +70,44 @@ public class Restaurant {
         return target.compareTo(menuNameList.get(low)) == 0;
     }
 
-//    public boolean checkItemPresentInMenu(String target) {
-//        List<String> menuNameList = getMenuNameList();
-//        selectionSort(menuNameList);
-//        searchMenu(menuNameList, target);
-//        return true;
-//    }
-
+    // get total cost of order, will throw itemNotFoundException
+    // if one or more items are not found in the menu
     public int getTotalCostOrder(String... itemNames) throws itemNotFoundException {
 
         List<String> menuNameList = getMenuNameList();
         selectionSort(menuNameList);
 
-        for (String itemName : itemNames) {
-            if (!searchItemInMenu(menuNameList, itemName)) {
-                throw new itemNotFoundException(itemName);
-            }
-        }
-
-
         int totalCost = 0;
 
         for (String name : itemNames) {
-            for (Item item : menu) {
-                if (name.compareTo(item.getName()) == 0) {
-                    totalCost += item.getPrice();
-                }
+            if (!searchItemInMenu(menuNameList, name)) {
+                throw new itemNotFoundException(name);
+            } else {
+                totalCost += Objects.requireNonNull(findItemByName(name)).getPrice();
             }
         }
+
+//        for (String itemName : itemNames) {
+//            if (!searchItemInMenu(menuNameList, itemName)) {
+//                throw new itemNotFoundException(itemName);
+//            }
+//        }
+//
+//        for (String name : itemNames) {
+//            for (Item item : menu) {
+//                if (name.compareTo(item.getName()) == 0) {
+//                    totalCost += item.getPrice();
+//                }
+//            }
+//        }
 
         return totalCost;
 
     }
 
-    private Item findItemByName(String itemName){
-        for(Item item: menu) {
-            if(item.getName().equals(itemName))
+    private Item findItemByName(String itemName) {
+        for (Item item: menu) {
+            if (item.getName().equals(itemName))
                 return item;
         }
         return null;
