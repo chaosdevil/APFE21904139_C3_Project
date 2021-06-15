@@ -79,6 +79,7 @@ public class Restaurant {
 
         int totalCost = 0;
 
+        // optimized from commented version
         for (String name : itemNames) {
             if (!searchItemInMenu(menuNameList, name)) {
                 throw new itemNotFoundException(name);
