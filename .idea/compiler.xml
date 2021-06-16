@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="APFE21904139_C3_Project" />
+        <module name="restaurant-finder" />
         <module name="Restaurant_project -Student version" />
         <module name="Restaurant_project" />
-        <module name="restaurant-finder" />
       </profile>
     </annotationProcessing>
   </component>
