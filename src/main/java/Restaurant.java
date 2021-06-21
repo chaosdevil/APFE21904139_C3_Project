@@ -30,7 +30,7 @@ public class Restaurant {
         return menu;
     }
 
-    // get total price
+    // get total price of all menu
     public int getTotalPrice() {
         List<Item> menus = getMenu();
         int totalPrice = 0;
