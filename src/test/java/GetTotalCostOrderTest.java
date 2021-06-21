@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -14,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetTotalCostOrderTest {
 
+    @Mock
     Restaurant restaurant;
+
+    @Mock
     RestaurantService service;
 
     // Refactoring code

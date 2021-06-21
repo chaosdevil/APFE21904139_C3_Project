@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
 
 import java.time.LocalTime;
 
@@ -7,7 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantServiceTest {
 
+    @Mock
     RestaurantService service = new RestaurantService();
+
+    @Mock
     Restaurant restaurant;
     //REFACTOR ALL THE REPEATED LINES OF CODE
 
