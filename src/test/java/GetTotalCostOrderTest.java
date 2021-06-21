@@ -8,6 +8,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// this test class is created specifically for testing GetTotalCostOrder() method
+// in order to see if it returns correct total price after selecting available menu
+// and to ensure that this method will throw the correct exception if it fails
 
 public class GetTotalCostOrderTest {
 
