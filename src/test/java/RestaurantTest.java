@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 import org.mockito.Spy;
@@ -14,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class RestaurantTest {
 
+    @Mock
     Restaurant restaurant;
 
     //REFACTOR ALL THE REPEATED LINES OF CODE
@@ -25,6 +28,8 @@ class RestaurantTest {
         restaurant = Mockito.spy(new Restaurant("Amelie's cafe", "Chennai", openingTime, closingTime));
         restaurant.addToMenu("Sweet corn soup", 119);
         restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Shrimp salad", 199);
+        restaurant.addToMenu("Chinese noodles", 50);
     }
 
 
@@ -55,7 +60,7 @@ class RestaurantTest {
     @Test
     public void getTotalPrice_should_return_correct_price() {
 
-        assertEquals(119+269, restaurant.getTotalPrice());
+        assertEquals(119+269+199+50, restaurant.getTotalPrice());
 
     }
 
@@ -91,4 +96,41 @@ class RestaurantTest {
 
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // <<<<<<<<<<<<<<<<<<<<<<GETTOTALCOST>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void test_getMenu_not_null() {
+
+        assertNotNull(restaurant.getMenu());
+
+    }
+
+    @Test
+    public void test_return_correct_getTotalPrice() {
+
+        assertEquals(119+269+199+50, restaurant.getTotalPrice());
+
+    }
+
+    @Test
+    public void test_return_correct_totalPrice_with_selected_item_names() throws itemNotFoundException {
+
+        assertEquals(119+199, restaurant.getTotalCostOrder("Sweet corn soup", "Shrimp salad"));
+        assertEquals(119+50, restaurant.getTotalCostOrder("Sweet corn soup", "Chinese noodles"));
+        assertEquals(199+269, restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne"));
+        assertEquals(199+269+50, restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Chinese noodles"));
+
+        String[] items = {"Shrimp salad", "Vegetable lasagne", "Chinese noodles"};
+        assertEquals(199+269+50, restaurant.getTotalCostOrder(items));
+
+    }
+
+    @Test
+    public void test_getTotalCostOrder_throws_itemNotFoundException() {
+
+        assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Thai noodles"));
+        assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Pizza", "Chinese noodles"));
+
+    }
+    // <<<<<<<<<<<<<<<<<<<<<<GETTOTALCOST>>>>>>>>>>>>>>>>>>>>>
 }
