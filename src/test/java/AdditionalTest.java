@@ -103,15 +103,15 @@ public class AdditionalTest {
 
     @Test
     public void test_sorted_menu_is_not_equal_false_sorted_list() {
-        List<String> expectedOrderedList = new ArrayList<>();
-        expectedOrderedList.add("Shrimp salad");
-        expectedOrderedList.add("Vegetable lasagne");
-        expectedOrderedList.add("Sweet corn soup");
-        expectedOrderedList.add("Chinese noodles");
+        List<String> falseOrderedList = new ArrayList<>();
+        falseOrderedList.add("Shrimp salad");
+        falseOrderedList.add("Vegetable lasagne");
+        falseOrderedList.add("Sweet corn soup");
+        falseOrderedList.add("Chinese noodles");
 
         List<String> correctSortedList = restaurant.getMenuNameList();
         restaurant.heapsort(correctSortedList);
 
-        assertNotEquals(expectedOrderedList, correctSortedList);
+        assertNotEquals(falseOrderedList, correctSortedList);
     }
 }
