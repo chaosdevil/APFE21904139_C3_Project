@@ -7,13 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-// this test class is created specifically for testing GetTotalCostOrder() method
-// in order to see if it returns correct total price after selecting available menu
-// and to ensure that this method will throw the correct exception if it fails
+/*
+    this test class is created to test
+    miscellaneous methods or classes
+    added to the project
+ */
 
-public class GetTotalCostOrderTest {
+public class AdditionalTest {
 
     @Mock
     Restaurant restaurant;
@@ -68,5 +71,47 @@ public class GetTotalCostOrderTest {
         assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Shrimp salad", "Vegetable lasagne", "Thai noodles"));
         assertThrows(itemNotFoundException.class, () -> restaurant.getTotalCostOrder("Pizza", "Chinese noodles"));
 
+    }
+
+    @Test
+    public void test_selectionsort_return_correct_sorted_result() {
+        List<String> expectedOrderedList = new ArrayList<>();
+        expectedOrderedList.add("Chinese noodles");
+        expectedOrderedList.add("Shrimp salad");
+        expectedOrderedList.add("Sweet corn soup");
+        expectedOrderedList.add("Vegetable lasagne");
+
+        List<String> menu = restaurant.getMenuNameList();
+        restaurant.selectionSort(menu);
+
+        assertEquals(expectedOrderedList, menu);
+    }
+
+    @Test
+    public void test_heapsort_return_correct_sorted_result() {
+        List<String> expectedOrderedList = new ArrayList<>();
+        expectedOrderedList.add("Chinese noodles");
+        expectedOrderedList.add("Shrimp salad");
+        expectedOrderedList.add("Sweet corn soup");
+        expectedOrderedList.add("Vegetable lasagne");
+
+        List<String> menu = restaurant.getMenuNameList();
+        restaurant.heapsort(menu);
+
+        assertEquals(expectedOrderedList, menu);
+    }
+
+    @Test
+    public void test_sorted_menu_is_not_equal_false_sorted_list() {
+        List<String> expectedOrderedList = new ArrayList<>();
+        expectedOrderedList.add("Shrimp salad");
+        expectedOrderedList.add("Vegetable lasagne");
+        expectedOrderedList.add("Sweet corn soup");
+        expectedOrderedList.add("Chinese noodles");
+
+        List<String> correctSortedList = restaurant.getMenuNameList();
+        restaurant.heapsort(correctSortedList);
+
+        assertNotEquals(expectedOrderedList, correctSortedList);
     }
 }

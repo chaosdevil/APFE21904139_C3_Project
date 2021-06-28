@@ -1,25 +1,27 @@
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 class RestaurantServiceTest {
 
     @Mock
-    RestaurantService service = new RestaurantService();
+    Restaurant restaurant;
 
     @Mock
-    Restaurant restaurant;
+    RestaurantService service = new RestaurantService();
     //REFACTOR ALL THE REPEATED LINES OF CODE
 
     @BeforeEach
     public void init() {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
-        restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant = service.addRestaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
     }
@@ -32,6 +34,7 @@ class RestaurantServiceTest {
 
         assertNotNull(restaurant);
         assertEquals(restaurant, service.findRestaurantByName("Amelie's cafe"));
+
     }
 
     //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content

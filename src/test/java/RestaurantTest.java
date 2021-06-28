@@ -1,16 +1,16 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -18,6 +18,9 @@ class RestaurantTest {
 
     @Mock
     Restaurant restaurant;
+
+    @InjectMocks
+    RestaurantService service = new RestaurantService();
 
     //REFACTOR ALL THE REPEATED LINES OF CODE
 

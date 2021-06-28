@@ -40,7 +40,7 @@ public class Restaurant {
         return totalPrice;
     }
 
-    // sort the menuNames
+    // selection sort
     public void selectionSort(List<String> itemNames) {
         for (int i = 0; i < itemNames.size() - 1; i++) {
             for (int j = i+1; j < itemNames.size(); j++) {
@@ -52,6 +52,48 @@ public class Restaurant {
             }
         }
     }
+    // selection sort
+
+    // heap sort
+    // it is guaranteed that the worst case is no greater than n log n
+    public void heapify(List<String> arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr.get(left).compareTo(arr.get(largest)) > 0) {
+            largest = left;
+        }
+
+        if (right < n && arr.get(right).compareTo(arr.get(largest)) > 0) {
+            largest = right;
+        }
+        
+        if (largest != i) {
+            String swap = arr.get(i);
+            arr.set(i, arr.get(largest));
+            arr.set(largest, swap);
+
+            heapify(arr, n, largest);
+        }
+        
+    }
+    public void heapsort(List<String> itemNames) {
+        int n = itemNames.size();
+
+        for (int i = n/2 - 1; i >= 0; i--) {
+            heapify(itemNames, n, i);
+        }
+
+        for (int i = n - 1; i > 0 ; i--) {
+            String temp = itemNames.get(0);
+            itemNames.set(0, itemNames.get(i));
+            itemNames.set(i, temp);
+
+            heapify(itemNames, i, 0);
+        }
+    }
+    // heap sort
 
     // search items in menu and return true if found, otherwise return
     // implemented on binary search
@@ -75,7 +117,10 @@ public class Restaurant {
     public int getTotalCostOrder(String... itemNames) throws itemNotFoundException {
 
         List<String> menuNameList = getMenuNameList();
-        selectionSort(menuNameList);
+
+        // able to change selection sort and heap sort
+        // in this case, I added heap sort
+        heapsort(menuNameList);
 
         int totalCost = 0;
 
