@@ -1,11 +1,9 @@
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 
 class RestaurantServiceTest {
@@ -30,10 +28,10 @@ class RestaurantServiceTest {
     @Test
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
 
-        restaurant = service.findRestaurantByName("Amelie's cafe");
+        Restaurant expectedRestaurant = service.findRestaurantByName("Amelie's cafe");
 
-        assertNotNull(restaurant);
-        assertEquals(restaurant, service.findRestaurantByName("Amelie's cafe"));
+        assertNotNull(service.findRestaurantByName("Amelie's cafe"));
+        assertEquals(expectedRestaurant, service.findRestaurantByName("Amelie's cafe"));
 
     }
 

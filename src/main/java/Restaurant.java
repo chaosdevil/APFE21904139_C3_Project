@@ -1,7 +1,5 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +8,7 @@ public class Restaurant {
     private String location;
     public LocalTime openingTime;
     public LocalTime closingTime;
-    private List<Item> menu = new ArrayList<Item>();
+    private List<Item> menu = new ArrayList<>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -132,20 +130,6 @@ public class Restaurant {
                 totalCost += Objects.requireNonNull(findItemByName(name)).getPrice();
             }
         }
-
-//        for (String itemName : itemNames) {
-//            if (!searchItemInMenu(menuNameList, itemName)) {
-//                throw new itemNotFoundException(itemName);
-//            }
-//        }
-//
-//        for (String name : itemNames) {
-//            for (Item item : menu) {
-//                if (name.compareTo(item.getName()) == 0) {
-//                    totalCost += item.getPrice();
-//                }
-//            }
-//        }
 
         return totalCost;
 
